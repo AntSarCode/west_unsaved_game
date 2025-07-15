@@ -35,7 +35,7 @@ west_unsaved_game/
 ├── .venv/                # Virtual environment (gitignored)
 └── requirements.txt      # Python dependencies
 
-# 🚧 Current Progress
+# Current Progress
 - ✅ Movement, Shooting, Reloading, HUD
 - ✅ Character loadouts, abilities, perks
 - ✅ Stylized asset integration
@@ -43,7 +43,7 @@ west_unsaved_game/
 - ⏳ Phase-based game state engine
 - ⏳ Finalize alliance mechanics
 
-# 📦 Setup
+# Setup
 
 1. Clone the repo:
 git clone https://github.com/AntStarCode/west_unsaved_game.git
@@ -56,7 +56,7 @@ python -m venv .venv
 3. Install dependencies:
 pip install -r requirements.txt
 
-# 🎯 Goals
+# Goals
 - Build a fully playable demo by Month 3
 - Implement online multiplayer and matchmaking by Month 6
 - Reach beta release with full visual/audio polish by Month 9
@@ -64,6 +64,6 @@ pip install -r requirements.txt
 # 👤 Credits
 This project is independently developed by AntStarCode, written in Python, built with Ursina, and inspired by surreal, mythic Western storytelling.
 
-# 📜 License
+# License
 This project is currently closed-source and proprietary. Distribution, reproduction, or derivative projects are not permitted without explicit permission.
 
