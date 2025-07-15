@@ -1,4 +1,4 @@
-from src.config.metrics.map import MAP_NODES, MAP_WIDTH, MAP_HEIGHT, TERRAIN_TYPES
+from src.config.metrics.map_loader import MAP_NODES, MAP_WIDTH, MAP_HEIGHT, TERRAIN_TYPES
 
 def find_node_by_name(name):
     return next((node for node in MAP_NODES if node['name'] == name), None)

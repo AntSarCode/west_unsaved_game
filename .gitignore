@@ -48,6 +48,9 @@ config/private_settings.json
 character_art_drafts/
 map_drafts/
 assets/
+assets/audio/
+assets/models/
+models_compressed/
 
 # 💾 Compiled or Exported Builds (if used later)
 # ============================

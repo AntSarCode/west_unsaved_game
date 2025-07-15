@@ -20,7 +20,7 @@ weapon_sfx_map = {
         "sound_reload": "assets/sounds/sniper_reload.wav",
         "animation_reload": "reload_sniper",
     },
-    "pistol": {
+    "revolver": {
         "sound_fire": "assets/sounds/pistol_fire.wav",
         "sound_reload": "assets/sounds/pistol_reload.wav",
         "animation_reload": "reload_pistol",

@@ -1,6 +1,6 @@
 from .weapons import Weapon, weapon_types
 from .weapon_loader import weapon_library
-from src.core.engine.combat import (
+from utils.combat_utils import (
     calculate_damage,
     apply_damage,
     apply_on_hit_effects

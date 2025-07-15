@@ -23,7 +23,7 @@ weapon_characteristics = {
         "range": "long",
         "recoil": "very high",
     },
-    "pistol": {
+    "revolver": {
         "damage": 25,
         "fire_rate": 0.35,
         "reload_time": 1.5,

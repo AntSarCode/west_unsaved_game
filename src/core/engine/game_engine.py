@@ -1,6 +1,6 @@
 from src.core.engine.tick import GameClock
 from src.core.engine.phases import PhaseState
-from src.core.engine.combat import apply_damage, apply_on_hit_effects, calculate_damage
+from utils.combat_utils import apply_damage, apply_on_hit_effects, calculate_damage
 from src.core.engine.game_state import GameState
 
 

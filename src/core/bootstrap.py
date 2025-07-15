@@ -2,7 +2,7 @@ from ursina import load_texture
 from pathlib import Path
 from src.config.teams.alliance import AllianceManager
 from src.config.metrics.constants import ALLIANCE_MAX
-from src.config.metrics.map import load_map_config
+from src.config.metrics.map_loader import load_map_config
 from src.utils.match_logger import match_logger
 
 ASSET_PATHS = {

@@ -1,12 +1,22 @@
-from ursina import Entity, color, held_keys, Vec3, time
+from ursina import (Entity, color, held_keys, Vec3, mouse,
+                    time, camera, EditorCamera, invoke, scene, clamp)
 from users.characters import character_kits
 from users.perks import PERKS
 from users.status_effects import status_effect_types
 from weapons.weapon_loader import weapon_library
 
 class Player(Entity):
-    def __init__(self, name, character_key, perk_key, game_state, use_cowboy_model=False):
+    def __init__(self, name, character_key, perk_key, game_state, use_cowboy_model=False, position=(0,0,0)):
         super().__init__()
+
+        # Set up dev camera toggle
+        self.dev_camera_enabled = False
+        self.editor_camera = EditorCamera(enabled=False)
+
+        # Default to first-person camera
+        camera.parent = self
+        camera.position = Vec3(0, 1.5, 0)
+        camera.rotation = (0, 0, 0)
 
         self.name = name
         self.character_key = character_key
@@ -15,9 +25,8 @@ class Player(Entity):
         self.perk = PERKS[perk_key]
         self.game_state = game_state
 
-        # Base stats
         self.base_health = self.character['base_health']
-        self.max_health = self.base_health  # Can be modified later by perks, consumables, etc.
+        self.max_health = self.base_health
         self.health = self.max_health
         self.speed = self.character['speed']
         self.jump_height = 0.35
@@ -27,18 +36,16 @@ class Player(Entity):
         self.score = 0
         self.loadout = self.character['loadout']
         self.active_status_effects = {}
+        self.last_damaged_by = None
 
-        # Sprint and crouch modifiers
         self.sprint_multiplier = 1.5
         self.crouch_multiplier = 0.5
         self.is_crouching = False
 
-        # Weapon inventory and selection
-        self.weapon_inventory = [weapon_library.get(w, weapon_library['pistol']) for w in self.loadout]
+        self.weapon_inventory = [weapon_library.get(w, weapon_library['revolver']) for w in self.loadout]
         self.active_weapon_index = 0
         self.weapon = self.weapon_inventory[self.active_weapon_index]
 
-        # Default perk-related attributes
         self.can_repair = False
         self.can_steal = False
         self.can_heal_self = False
@@ -52,24 +59,19 @@ class Player(Entity):
 
         self.apply_perk_effects()
 
-        # Respawn tracking
         self.is_respawning = False
         self.respawn_time_remaining = 0
         self.respawn_delay = 5
 
-        # Cowboy model override
         if use_cowboy_model:
-            self.model = 'models/cowboy_lowpoly'
+            self.model = 'models/characters/cowboy_lowpoly.glb'
             self.color = color.orange
-            self.scale = 1
-            self.position = (0, 0, 0)
-
-        try:
-            self.model = 'models/cowboy_lowpoly'
-        except Exception as e:
-            print(f"Failed to load cowboy model: {e}, using cube instead.")
+        else:
             self.model = 'cube'
             self.color = color.orange
+
+        self.scale = 1
+        self.position = Vec3(*position)
 
     def switch_weapon(self, index):
         if 0 <= index < len(self.weapon_inventory):
@@ -82,8 +84,6 @@ class Player(Entity):
             self.max_health += self.perk['health_bonus']
         if 'health_penalty' in self.perk:
             self.max_health -= self.perk['health_penalty']
-
-        # Clamp current health to new max
         self.health = min(self.health, self.max_health)
 
         if 'speed_bonus' in self.perk:
@@ -137,7 +137,7 @@ class Player(Entity):
     def respawn(self):
         print(f"{self.name} has respawned.")
         self.health = self.max_health
-        self.position = Vec3(0, 0, 0)  # Replace with spawn logic
+        self.position = Vec3(0, 1, 0)
         for weapon in self.weapon_inventory:
             weapon.ammo = weapon.ammo_capacity
         self.is_respawning = False
@@ -150,13 +150,64 @@ class Player(Entity):
                 self.respawn()
             return
 
-        # Fire weapon on left click
+        # Handle first-person mouse look
+        camera.rotation_y += mouse.velocity[0] * 20
+        camera.rotation_x -= mouse.velocity[1] * 20
+        camera.rotation_x = clamp(camera.rotation_x, -80, 80)
+        camera.position = self.position + Vec3(0, 1.5, 0)
+
+        # Toggle dev camera
+        if held_keys['v'] and not self.dev_camera_enabled:
+            self.dev_camera_enabled = True
+            self.editor_camera.enabled = True
+            camera.parent = scene
+            invoke(setattr, self, 'dev_camera_enabled', False, delay=0.5)
+
+        elif held_keys['v'] and self.editor_camera.enabled:
+            self.editor_camera.enabled = False
+            camera.parent = self
+            camera.position = Vec3(0, 1.6, 0)
+            camera.rotation = (0, 0, 0)
+            invoke(setattr, self, 'dev_camera_enabled', False, delay=0.5)
+
+        direction = Vec3(
+            held_keys['d'] - held_keys['a'],
+            0,
+            held_keys['w'] - held_keys['s']
+        ).normalized()
+
+        is_sprinting = held_keys['shift']
+        is_crouching = held_keys['ctrl']
+
+        current_speed = self.speed
+        if is_sprinting:
+            current_speed *= self.sprint_multiplier
+        elif is_crouching:
+            current_speed *= self.crouch_multiplier
+
+        forward = camera.forward
+        right = camera.right
+
+        move = (right * direction.x + forward * direction.z).normalized()
+        self.position += move * current_speed * time.dt
+
+        if not self.grounded:
+            self.vertical_velocity -= self.gravity * time.dt
+            self.position += Vec3(0, self.vertical_velocity * time.dt, 0)
+
+        if self.position.y <= 0.5:
+            self.position = Vec3(self.position.x, 0.5, self.position.z)
+            self.vertical_velocity = 0
+            self.grounded = True
+
+        if held_keys['space'] and self.grounded:
+            self.vertical_velocity = self.jump_height
+            self.grounded = False
+
         if held_keys['left mouse']:
             self.weapon.fire()
 
-        # Start reload on 'R'
         if held_keys['r']:
             self.weapon.start_reload()
 
-        # Process reload timer
         self.weapon.update_reload()

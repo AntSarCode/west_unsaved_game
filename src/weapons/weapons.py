@@ -43,8 +43,8 @@ weapon_types = {
         "sound_reload": "assets/sounds/sniper_reload.wav",
         "animation_reload": "reload_sniper",
     },
-    "pistol": {
-        "name": "Pistol",
+    "revolver": {
+        "name": "revolver",
         "category": "Secondary",
         "description": "Low damage but fast draw and reload. Effective backup.",
         "range": 30,

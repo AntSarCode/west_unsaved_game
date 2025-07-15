@@ -1,5 +1,4 @@
 import json
-from pathlib import Path
 
 def load_map_config(path="data/map_drafts/map_config.json"):
     try:
@@ -19,7 +18,7 @@ MAP_HEIGHT = 100
 MAP_NODES = [
     {'name': 'Outpost North', 'x': 15, 'y': 20, 'type': 'control', 'capture_zone': True},
     {'name': 'Shatterpoint', 'x': 50, 'y': 50, 'type': 'boss', 'capture_zone': False},
-    {'name': 'Dustspire South', 'x': 85, 'y': 80, 'type': 'control', 'capture_zone': True},
+    {'name': 'Dustspire South Tip', 'x': 85, 'y': 80, 'type': 'control', 'capture_zone': True},
     {'name': 'Hidden Cache', 'x': 40, 'y': 90, 'type': 'loot', 'capture_zone': False},
     {'name': 'Altar of Horns', 'x': 75, 'y': 25, 'type': 'objective', 'capture_zone': False},
 ]

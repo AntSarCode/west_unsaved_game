@@ -1,7 +1,5 @@
-from src.users.status_effects import status_effect_types
-from src.weapons.weapon_stats import weapon_characteristics
-
 def calculate_damage(attacker, target, weapon_key):
+    from src.weapons.weapon_stats import weapon_characteristics
     weapon = weapon_characteristics.get(weapon_key)
     if not weapon:
         print(f"Unknown weapon: {weapon_key}")
@@ -30,6 +28,8 @@ def handle_death(player):
     # Consider calling game state updates, drops, or kill feed here if needed
 
 def apply_on_hit_effects(target, weapon_key):
+    from src.weapons.weapon_stats import weapon_characteristics
+    from src.users.status_effects import status_effect_types
     weapon = weapon_characteristics.get(weapon_key)
     if not weapon:
         return
