@@ -47,18 +47,8 @@ config/private_settings.json
 # Character drafts and map art
 character_art_drafts/
 map_drafts/
+assets/
 
-# Voice lines and raw audio
-assets/audio/voice_lines/
-assets/audio/raw/
-assets/audio/dialogue/
-
-# Optional: ignore large or unpolished images (edit as needed)
-assets/images/raw/
-assets/textures/temp/
-assets/models/tmp/
-
-# ============================
 # 💾 Compiled or Exported Builds (if used later)
 # ============================
 build/
