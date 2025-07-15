@@ -1,0 +1,77 @@
+from ursina import Text, color, destroy
+
+class OverlayManager:
+    def __init__(self):
+        self.pause_overlay = Text(
+            text='[ PAUSED ]',
+            origin=(0, 0),
+            position=(0, 0.1),
+            scale=2,
+            color=color.gray,
+            background=True
+        )
+        self.pause_overlay.enabled = False
+
+        self.phase_overlay = Text(
+            text='',
+            origin=(0, 0),
+            position=(0, 0.3),
+            scale=1.5,
+            color=color.cyan,
+            background=True
+        )
+        self.phase_overlay.enabled = False
+
+        self.alliance_overlay = Text(
+            text='',
+            origin=(0, 0),
+            position=(0, -0.35),
+            scale=1.25,
+            color=color.lime,
+            background=True
+        )
+        self.alliance_overlay.enabled = False
+
+        self.kill_feed = []
+        self.max_kill_feed = 5
+
+    def toggle_pause(self, is_paused: bool):
+        self.pause_overlay.enabled = is_paused
+
+    def show_phase_transition(self, phase_name: str, color_hint=color.cyan):
+        self.phase_overlay.text = f'Phase: {phase_name}'
+        self.phase_overlay.color = color_hint
+        self.phase_overlay.enabled = True
+
+    def hide_phase_transition(self):
+        self.phase_overlay.enabled = False
+
+    def show_alliance_formation(self, members: list):
+        names = ', '.join(members)
+        self.alliance_overlay.text = f'Alliance Formed: {names}'
+        self.alliance_overlay.enabled = True
+
+    def hide_alliance_overlay(self):
+        self.alliance_overlay.enabled = False
+
+    def add_kill_feed(self, killer_name: str, victim_name: str, weapon_name: str = None):
+        skull = "\U0001F480"
+        text = f"{killer_name} {skull} {victim_name}"
+        if weapon_name:
+            text += f" [{weapon_name}]"
+        entry = Text(
+            text=text,
+            position=(0.65, 0.4 - len(self.kill_feed)*0.05),
+            scale=1.1,
+            color=color.white,
+            origin=(0, 0)
+        )
+        self.kill_feed.insert(0, entry)
+
+        if len(self.kill_feed) > self.max_kill_feed:
+            removed = self.kill_feed.pop()
+            destroy(removed)
+
+    def update_kill_feed_positions(self):
+        for i, entry in enumerate(self.kill_feed):
+            entry.y = 0.4 - i * 0.05

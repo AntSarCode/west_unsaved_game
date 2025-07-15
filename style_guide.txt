@@ -1,0 +1,41 @@
+Stylized Low-Poly Art Style Guide v0.1
+
+🧱 Geometry
+
+    * Silhouette Style: Graphically accurate and expressive
+
+    * Edge Design: Varied edge geometry with intentional asymmetry
+
+    * Beveling: Allowed where it enhances shape recognition or lighting response
+
+🎨 Color Palette
+
+    * Dusty Red-Orange — #C24A2D (terrain, accents, danger)
+
+    * Ghostly Green — #9AD8AE (spirit themes, spectral lighting)
+
+    * Deep Purple — #4B2C5E (twilight sky, magical elements)
+
+🖌️ Textures
+
+    * Base Style: Flat color fills
+
+    * Detail: Light gradient ramps to create depth and contrast
+
+    * Avoid: PBR/realistic textures — stylization over realism
+
+💡 Lighting
+
+    * Primary Light: Warm low-angle sun (gold/orange tint)
+
+    * Fill/Ambient: Dark brown bounce light for rich shadows
+
+    * Shadows: Hard-edged or toon-filtered preferred
+
+🌄 Skybox / Sky
+
+    * Theme: Blood-red dusk
+
+    * Style: Static gradient or flat-mesh dome
+
+    * Tone: Emotional, mythic, otherworldly — not realistic

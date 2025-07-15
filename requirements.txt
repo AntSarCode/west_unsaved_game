@@ -1,0 +1,37 @@
+# Core Engine
+ursina==7.0.0
+
+# 3D Math & Transformations
+numpy>=1.22.0
+
+# Image & Texture Handling
+pillow>=9.0.0
+
+# Audio Processing (for voice lines, SFX)
+pydub>=0.25.1
+simpleaudio>=1.0.4
+
+# Networking / Multiplayer Logic
+websockets>=11.0.3
+aiohttp>=3.8.6
+
+# Optional GUI or Dev Tools
+pyperclip>=1.8.2
+rich>=13.3.4
+
+# Data and Game State Persistence
+sqlalchemy>=2.0.0
+tinydb>=4.7.1
+
+# Character Logic / AI Extensions (future)
+scipy>=1.10.0
+
+# Procedural Generation (terrain, spirit fog, loot)
+noise>=1.2.2
+
+# Testing / Debugging Utilities
+pytest>=7.2.0
+faker>=18.3.1
+
+# Optional: Camera/Recording/Analytics (future stretch)
+opencv-python>=4.7.0.72

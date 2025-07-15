@@ -1,0 +1,93 @@
+# ============================
+# 🐍 Python
+# ============================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.log
+
+# ============================
+# 🧪 Virtual Environments
+# ============================
+.venv/
+venv/
+ENV/
+
+# ============================
+# 🧠 IDEs & Editors
+# ============================
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# ============================
+# 🗃️ OS and Metadata
+# ============================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+*.swp
+*.bak
+
+# ============================
+# 🔒 Secrets & Configs
+# ============================
+.env
+*.key
+*.pem
+config/private_settings.json
+
+# ============================
+# 🗂️ Project Assets (Private or Large)
+# ============================
+# Character drafts and map art
+character_art_drafts/
+map_drafts/
+
+# Voice lines and raw audio
+assets/audio/voice_lines/
+assets/audio/raw/
+assets/audio/dialogue/
+
+# Optional: ignore large or unpolished images (edit as needed)
+assets/images/raw/
+assets/textures/temp/
+assets/models/tmp/
+
+# ============================
+# 💾 Compiled or Exported Builds (if used later)
+# ============================
+build/
+dist/
+*.egg-info/
+*.spec
+
+# ============================
+# 📦 Data/Database Files (optional)
+# ============================
+*.db
+*.sqlite
+*.csv
+*.tsv
+data/exports/
+data/debug_dumps/
+
+# ============================
+# 🚀 External Libraries or Tools (optional)
+# ============================
+node_modules/
+*.wasm
+*.dll
+*.exe
+*.app
+
+# ============================
+# 🎮 Game Engine Specific (Ursina safe zone)
+# ============================
+# Leave assets/models and assets/sprites tracked
+# Just be cautious of high-volume or temp files
+
