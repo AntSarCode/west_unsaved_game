@@ -1,0 +1,12 @@
+{
+    "name": "Echo Shard",
+    "category": "Special",
+    "description": "Unique weapon from Clogade the Banished. Placeholder stats.",
+    "range": 25,
+    "damage": 35,
+    "fire_rate": 0.6,
+    "reload_time": 2.0,
+    "ammo_capacity": 6,
+    "reserve_ammo": 30,
+    "character_origin": "Clogade the Banished"
+}

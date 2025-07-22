@@ -1,0 +1,14 @@
+{
+    "name": "revolver",
+    "category": "Secondary",
+    "description": "Low damage but fast draw and reload. Effective backup.",
+    "range": 30,
+    "damage": 25,
+    "fire_rate": 0.35,
+    "reload_time": 1.5,
+    "ammo_capacity": 6,
+    "reserve_ammo": 30,
+    "sound_fire": "assets/sounds/pistol_fire.wav",
+    "sound_reload": "assets/sounds/pistol_reload.wav",
+    "animation_reload": "reload_pistol"
+}

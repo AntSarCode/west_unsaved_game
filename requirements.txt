@@ -4,9 +4,10 @@ panda3d==1.10.15
 
 # Structural Pathing
 python-dotenv>=1.0.0
+bpy==4.4.0
 
 # 3D Math & Transformations
-numpy>=1.22.0
+numpy==1.24.4
 
 # Image & Texture Handling
 pillow>=9.0.0

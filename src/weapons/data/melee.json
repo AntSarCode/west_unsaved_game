@@ -1,0 +1,11 @@
+{
+    "name": "Melee",
+    "category": "Special",
+    "description": "Silent and fast. Useful for stealth takedowns.",
+    "range": 3,
+    "damage": 50,
+    "fire_rate": 1.0,
+    "reload_time": 0,
+    "ammo_capacity": null,
+    "reserve_ammo": null
+}

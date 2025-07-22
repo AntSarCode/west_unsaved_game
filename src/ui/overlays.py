@@ -1,4 +1,5 @@
 from ursina import Text, color, destroy
+import time
 
 class OverlayManager:
     def __init__(self):
@@ -31,6 +32,18 @@ class OverlayManager:
             background=True
         )
         self.alliance_overlay.enabled = False
+        self.alliance_timer = 0
+
+        self.betrayal_overlay = Text(
+            text='',
+            origin=(0, 0),
+            position=(0, -0.45),
+            scale=1.25,
+            color=color.red,
+            background=True
+        )
+        self.betrayal_overlay.enabled = False
+        self.betrayal_timer = 0
 
         self.kill_feed = []
         self.max_kill_feed = 5
@@ -50,9 +63,25 @@ class OverlayManager:
         names = ', '.join(members)
         self.alliance_overlay.text = f'Alliance Formed: {names}'
         self.alliance_overlay.enabled = True
+        self.alliance_timer = time.time()
 
     def hide_alliance_overlay(self):
         self.alliance_overlay.enabled = False
+
+    def show_betrayal(self, betrayer: str, target: str):
+        self.betrayal_overlay.text = f'{betrayer} betrayed {target}!'
+        self.betrayal_overlay.enabled = True
+        self.betrayal_timer = time.time()
+
+    def hide_betrayal_overlay(self):
+        self.betrayal_overlay.enabled = False
+
+    def update_overlays(self):
+        now = time.time()
+        if self.alliance_overlay.enabled and now - self.alliance_timer > 4:
+            self.hide_alliance_overlay()
+        if self.betrayal_overlay.enabled and now - self.betrayal_timer > 4:
+            self.hide_betrayal_overlay()
 
     def add_kill_feed(self, killer_name: str, victim_name: str, weapon_name: str = None):
         skull = "\U0001F480"

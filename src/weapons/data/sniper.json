@@ -1,0 +1,14 @@
+{
+    "name": "Sniper",
+    "category": "Primary",
+    "description": "High damage, long-range, low fire rate.",
+    "range": 90,
+    "damage": 100,
+    "fire_rate": 1.5,
+    "reload_time": 3.5,
+    "ammo_capacity": 1,
+    "reserve_ammo": 18,
+    "sound_fire": "assets/sounds/sniper_fire.wav",
+    "sound_reload": "assets/sounds/sniper_reload.wav",
+    "animation_reload": "reload_sniper"
+}

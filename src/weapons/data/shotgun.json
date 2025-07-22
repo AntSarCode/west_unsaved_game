@@ -1,0 +1,14 @@
+{
+    "name": "Shotgun",
+    "category": "Primary",
+    "description": "Close-range powerhouse with spread damage.",
+    "range": 20,
+    "damage": 70,
+    "fire_rate": 1.0,
+    "reload_time": 3.0,
+    "ammo_capacity": 4,
+    "reserve_ammo": 28,
+    "sound_fire": "assets/sounds/shotgun_fire.wav",
+    "sound_reload": "assets/sounds/shotgun_reload.wav",
+    "animation_reload": "reload_shotgun"
+}

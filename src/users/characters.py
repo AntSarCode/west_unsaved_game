@@ -40,11 +40,14 @@ NICKNAME_INDEX = {
     "Thumping Heart": "Thumping Heart",
     "Reverend Piper": "Reverend Piper",
     "Full Moon": "Harmony 'Full Moon' King",
-    "The Kid's Sidekick": "Bonnie Pistols",
     "Baby Jack": "Jillian 'Peach' Reese's sidekick",
     "Winry": "Braizie 'Mama B' Stack's sidekick",
     "Liam": "Harmony 'Full Moon' King's sidekick",
-    "Jack": "Jillian 'Peach' Reese's sidekick"
+    "Jack": "Jillian 'Peach' Reese's sidekick",
+    "Theo": "Theo 'Prospector' Clayborne",
+    "Glorp": "Glorp Glapper",
+    "Anteus": "Anteus 'Puzzle' Ramble",
+    "Edwin": "Edwin 'Trailblazer' Horton"
 }
 
 

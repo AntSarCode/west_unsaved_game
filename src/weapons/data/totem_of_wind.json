@@ -1,0 +1,12 @@
+{
+    "name": "Totem of Wind",
+    "category": "Special",
+    "description": "Unique weapon from Rowan 'Chief' WhiteCloud. Placeholder stats.",
+    "range": 25,
+    "damage": 35,
+    "fire_rate": 0.6,
+    "reload_time": 2.0,
+    "ammo_capacity": 6,
+    "reserve_ammo": 30,
+    "character_origin": "Rowan 'Chief' WhiteCloud"
+}

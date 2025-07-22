@@ -1,7 +1,8 @@
-# Functional translation of Subterfuge ruleset
 from enum import Enum, auto
 from dataclasses import dataclass, field
 from typing import List, Optional
+from users.status_effects import status_effect_types
+from users.characters import character_kits, NICKNAME_INDEX
 
 # --- ENUM DEFINITIONS ---
 
@@ -55,6 +56,7 @@ class Alliance:
 
 # --- PHASE MANAGEMENT ---
 
+# noinspection PyMethodMayBeStatic
 class Game:
     def __init__(self):
         self.players: List[Player] = []
@@ -98,18 +100,43 @@ class Economy:
 
 # --- STATUS EFFECTS LOGIC MAP ---
 
+def apply_effect(player: Player, effect_name: str):
+    if effect_name in status_effect_types:
+        effect_enum = StatusEffect[effect_name.upper()]
+        game.assign_status(player, effect_enum)
+
 # --- CHARACTER DEFINITIONS ---
 
-# --- SAMPLE INITIALIZATION ---
+def get_character_kit(name: str) -> Optional[dict]:
+    """
+    Resolves full character kit from character name or nickname.
+    Returns the ability/kit dict or None if not found.
+    """
+    # Resolve nickname to full name if needed
+    full_name = NICKNAME_INDEX.get(name, name)
+    return character_kits.get(full_name)
+
+# --- FULL INITIALIZATION  ---
 
 if __name__ == "__main__":
     game = Game()
-    game.players.append(Player(name="Clogade", character="Giant Vessel"))
-    game.players.append(Player(name="Braizie", character="Mama B"))
 
-    # Pregame logic
+    # Add full characters using nickname and full name support
+    character_names = ["Clogade", "Mama B", "Frosty", "Princess", "Trey Card"]
+    for name in character_names:
+        kit = get_character_kit(name)
+        if kit:
+            game.players.append(Player(name=name, character=name))
+
+    # Forgo perks in pregame
     for p in game.players:
         p.forgo_perk()
 
-    game.next_phase()  # Move to SPAWN
+    # Advance to SPAWN phase
+    game.next_phase()
     print(f"Phase is now {game.phase.name}")
+
+    # Apply a sample status effect
+    apply_effect(game.players[0], "fear")
+    print(f"{game.players[0].name} effects: {game.players[0].effects}")
+

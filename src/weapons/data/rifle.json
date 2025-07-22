@@ -1,0 +1,14 @@
+{
+    "name": "Rifle",
+    "category": "Primary",
+    "description": "Versatile and mid-range. Balanced between power and rate of fire.",
+    "range": 60,
+    "damage": 35,
+    "fire_rate": 0.5,
+    "reload_time": 2.5,
+    "ammo_capacity": 8,
+    "reserve_ammo": 56,
+    "sound_fire": "assets/sounds/rifle_fire.wav",
+    "sound_reload": "assets/sounds/rifle_reload.wav",
+    "animation_reload": "reload_rifle"
+}

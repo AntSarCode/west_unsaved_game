@@ -1,0 +1,14 @@
+{
+    "name": "SMG",
+    "category": "Primary",
+    "description": "Fast-firing short-range weapon with high mobility.",
+    "range": 35,
+    "damage": 20,
+    "fire_rate": 0.1,
+    "reload_time": 2.0,
+    "ammo_capacity": 30,
+    "reserve_ammo": 120,
+    "sound_fire": "assets/sounds/smg_fire.wav",
+    "sound_reload": "assets/sounds/smg_reload.wav",
+    "animation_reload": "reload_smg"
+}

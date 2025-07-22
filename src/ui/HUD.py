@@ -1,5 +1,6 @@
 from ursina import Entity, Text, color
 from typing import List
+from config.teams.alliance import AllianceManager
 
 class HUD:
     def __init__(self):
@@ -51,6 +52,23 @@ class HUD:
             background=True
         )
 
+        self.alliance_text = Text(
+            text='',
+            position=(-0.85, 0.1),
+            scale=0.7,
+            color=color.cyan,
+            background=True
+        )
+
+        self.alliance_manager: AllianceManager = None
+        self.local_player_id: str = None
+
+    def set_alliance_manager(self, manager: AllianceManager):
+        self.alliance_manager = manager
+
+    def set_local_player(self, player_id: str):
+        self.local_player_id = player_id
+
     def update_score(self, new_score: int):
         self.score_text.text = f'Score: {new_score}'
 
@@ -73,6 +91,11 @@ class HUD:
     def show_status_effects(self, active_effects: List[str]):
         self.status_effect_text.text = ' / '.join(active_effects)
 
+    def update_alliance_info(self):
+        if self.alliance_manager and self.local_player_id:
+            allies = self.alliance_manager.get_allies(self.local_player_id)
+            self.alliance_text.text = f'Allies: {", ".join(allies)}' if allies else 'No allies'
+
     def hide(self):
         self.score_text.enabled = False
         self.event_text.enabled = False
@@ -80,6 +103,7 @@ class HUD:
         self.status_effect_text.enabled = False
         self.ammo_text.enabled = False
         self.weapon_text.enabled = False
+        self.alliance_text.enabled = False
 
     def show(self):
         self.score_text.enabled = True
@@ -88,3 +112,4 @@ class HUD:
         self.status_effect_text.enabled = True
         self.ammo_text.enabled = True
         self.weapon_text.enabled = True
+        self.alliance_text.enabled = True
